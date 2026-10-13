@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Assignment 1 — Plugin Showcase</title>
+
+  <!-- Plugin Styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css">
+  <link href="https://cdn.jsdelivr.net/npm/quill/dist/quill.snow.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Global Styling ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #2e0f1c, #4c1c32, #6a1b2d);
+      color: #eaeaea;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ===== Glassmorphic Header ===== */
+    header {
+      backdrop-filter: blur(14px);
+      background: linear-gradient(135deg, #8b1c32, #5e0d1d);
+      color: #fff;
+      text-align: center;
+      padding: 25px 10px;
+      font-size: 26px;
+      font-weight: 600;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 25px;
+    }
+
+    /* ===== Glassmorphic Plugin Cards ===== */
+    .card {
+      background: rgba(25, 25, 35, 0.65);
+      backdrop-filter: blur(15px);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      border: 1.5px solid rgba(255, 255, 255, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Neon Accent Borders */
+    .card:nth-child(1) { border-left: 4px solid #00eaff; }
+    .card:nth-child(2) { border-left: 4px solid #ff5fff; }
+    .card:nth-child(3) { border-left: 4px solid #00ffb0; }
+    .card:nth-child(4) { border-left: 4px solid #ffc107; }
+    .card:nth-child(5) { border-left: 4px solid #ff3e3e; }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 45px rgba(255, 255, 255, 0.2);
+    }
+
+    .card h2 {
+      margin-bottom: 12px;
+      font-size: 20px;
+      color: #fff;
+    }
+
+    p {
+      font-size: 14px;
+      color: #dcdcdc;
+      margin-bottom: 10px;
+    }
+
+    /* Inputs & Selects */
+    input[type="text"], textarea, select {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      margin-top: 5px;
+      background: #1b1b1b;
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus, textarea:focus, select:focus {
+      border-color: #ff3377;
+      outline: none;
+      box-shadow: 0 0 8px rgba(255, 51, 119, 0.6);
+    }
+
+    /* Fancybox Gallery */
+    .thumbs img {
+      width: 90px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .thumbs img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Quill Editor */
+    #editor-container {
+      height: 180px;
+      background: #fff;
+      color: #000;
+      border-radius: 10px;
+    }
+
+    /* Slick Slider */
+    .slider img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <header>Embedding Different Plugins in Webpage</header>
+
+  <div class="container">
+
+    <!-- Datepicker -->
+    <div class="card">
+      <h2>🗓 Datepicker (Flatpickr)</h2>
+      <p>Select your date of birth:</p>
+      <input type="text" id="datepicker" placeholder="Pick a date">
+    </div>
+
+    <!-- Image Gallery -->
+    <div class="card">
+      <h2>🖼 Image Gallery (Fancybox)</h2>
+      <p>Click on an image to open the gallery:</p>
+      <div class="thumbs">
+        <a data-fancybox="gallery" href="https://picsum.photos/800/500?random=1"><img src="https://picsum.photos/160/120?random=1" alt=""></a>
+        <a data-fancybox="gallery" href="https://picsum.photos/800/500?random=2"><img src="https://picsum.photos/160/120?random=2" alt=""></a>
+        <a data-fancybox="gallery" href="https://picsum.photos/800/500?random=3"><img src="https://picsum.photos/160/120?random=3" alt=""></a>
+      </div>
+    </div>
+
+    <!-- Rich Text Editor -->
+    <div class="card">
+      <h2>✍️ Rich Text Editor (Quill)</h2>
+      <p>Type and format text below:</p>
+      <div id="editor-container"></div>
+    </div>
+
+    <!-- Searchable Dropdown -->
+    <div class="card">
+      <h2>🔎 Searchable Dropdown (Tom Select)</h2>
+      <p>Search for a student:</p>
+      <select id="studentSelect">
+        <option value="">Select a student</option>
+        <option value="1">Siyam</option>
+        <option value="2">Luqman</option>
+        <option value="3">Ayesha</option>
+        <option value="4">Khuram</option>
+        <option value="5">Umer</option>
+      </select>
+    </div>
+
+    <!-- Slider -->
+    <div class="card">
+      <h2>🎞 Image Slider</h2>
+      <p>Modern slider with smooth transitions:</p>
+      <div class="slider">
+        <div><img src="https://picsum.photos/500/250?random=11" alt=""></div>
+        <div><img src="https://picsum.photos/500/250?random=12" alt=""></div>
+        <div><img src="https://picsum.photos/500/250?random=13" alt=""></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ✅ Plugin Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quill/dist/quill.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+
+  <!-- ✅ Plugin Initializations -->
+  <script>
+    // Flatpickr Init
+    flatpickr("#datepicker", {
+      dateFormat: "d-m-Y",
+      altInput: true,
+      altFormat: "F j, Y"
+    });
+
+    // Quill Editor Init
+    new Quill('#editor-container', {
+      theme: 'snow'
+    });
+
+    // Tom Select Init
+    new TomSelect("#studentSelect", {
+      create: false,
+      sortField: { field: "text", direction: "asc" }
+    });
+
+    // Slick Slider Init
+    $(document).ready(function(){
+      $('.slider').slick({
+        dots: true,
+        infinite: true,
+        speed: 700,
+        autoplay: true,
+        autoplaySpeed: 2500,
+        slidesToShow: 1,
+        adaptiveHeight: true
+      });
+    });
+  </script>
+</body>
+</html>
